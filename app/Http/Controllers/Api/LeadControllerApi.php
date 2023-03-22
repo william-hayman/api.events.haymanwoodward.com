@@ -48,7 +48,7 @@ class LeadControllerApi extends Controller
     public function store(StoreLeadRequest $request)
     {
 
-        // dd($request->header('host'));
+        return $request->header('host');
 
         $validated = $request->validated();
 
