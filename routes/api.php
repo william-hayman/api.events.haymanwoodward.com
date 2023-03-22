@@ -15,9 +15,9 @@ use App\Http\Controllers\Api\LeadControllerApi;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get('/all', [LeadControllerApi::class, 'index'])->name('api.leads.index');
+// Route::get('/all', [LeadControllerApi::class, 'index'])->name('api.leads.index');
 Route::post('/lead', [LeadControllerApi::class, 'store'])->name('api.leads.store');

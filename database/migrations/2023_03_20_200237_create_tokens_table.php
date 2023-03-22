@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('tokens', function (Blueprint $table) {
             $table->id();
+            $table->string('status');
             $table->string('hash');
             $table->integer('limit');
             $table->integer('used');
+            $table->string('path');
             $table->date('validate');
             $table->timestamps();
         });

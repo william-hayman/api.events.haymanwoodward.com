@@ -48,6 +48,8 @@ class LeadControllerApi extends Controller
     public function store(StoreLeadRequest $request)
     {
 
+        dd($request->header('host'));
+
         $validated = $request->validated();
 
         if($this->token($request->header('Api-Token'))){
