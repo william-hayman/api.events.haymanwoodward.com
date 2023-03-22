@@ -15,11 +15,11 @@ class LeadControllerApi extends Controller
      * Display a listing of the resource.
      */
 
-    public function token($token){
+    public function token($token, $path){
         $token = Token::where('hash', $token)->get();
 
         if(count($token) == 1){
-            if($token[0]->limit > $token[0]->used && $token[0]->validate >= date("Y-m-d")){
+            if($token[0]->limit > $token[0]->used && $token[0]->validate >= date("Y-m-d") && $token[0]->path == $path){
                 Token::where('id', $token[0]->id)->increment('used', 1);
                 return true;
             }
@@ -48,11 +48,11 @@ class LeadControllerApi extends Controller
     public function store(StoreLeadRequest $request)
     {
 
-        dd($request->header('host'));
+        // dd($request->header('host'));
 
         $validated = $request->validated();
 
-        if($this->token($request->header('Api-Token'))){
+        if($this->token($request->header('Api-Token'), $request->header('host'))){
             return Lead::create($validated);
         }
 
