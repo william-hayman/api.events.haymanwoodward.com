@@ -19,7 +19,7 @@ class LeadControllerApi extends Controller
         $token = Token::where('hash', $token)->get();
 
         if(count($token) == 1){
-            if($token[0]->limit > $token[0]->used && $token[0]->validate >= date("Y-m-d") && $token[0]->path == $path){
+            if($token[0]->limit > $token[0]->used && $token[0]->validate >= date("Y-m-d")){
                 Token::where('id', $token[0]->id)->increment('used', 1);
                 return true;
             }
@@ -50,7 +50,7 @@ class LeadControllerApi extends Controller
 
         $validated = $request->validated();
 
-        if($this->token($request->header('Api-Token'), $request->formLink)){
+        if($this->token($request->header('Api-Token'))){
             return Lead::create($validated);
         }
 
