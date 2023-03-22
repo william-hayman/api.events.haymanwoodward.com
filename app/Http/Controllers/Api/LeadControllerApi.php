@@ -48,11 +48,9 @@ class LeadControllerApi extends Controller
     public function store(StoreLeadRequest $request)
     {
 
-        return $request->header('host');
-
         $validated = $request->validated();
 
-        if($this->token($request->header('Api-Token'), $request->header('host'))){
+        if($this->token($request->header('Api-Token'), $request->formLink)){
             return Lead::create($validated);
         }
 
