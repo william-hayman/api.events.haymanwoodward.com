@@ -15,7 +15,7 @@ class LeadControllerApi extends Controller
      * Display a listing of the resource.
      */
 
-    public function token($token, $path){
+    public function token($token){
         $token = Token::where('hash', $token)->get();
 
         if(count($token) == 1){
