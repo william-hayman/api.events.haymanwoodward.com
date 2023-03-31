@@ -47,19 +47,20 @@ class LeadControllerApi extends Controller
      */
     public function store(StoreLeadRequest $request)
     {
+        
 
-        $validated = $request->validated();
+            $validated = $request->validated();
 
-        if($this->token($request->header('Api-Token'))){
-            return Lead::create($validated);
-        }
+            if($this->token($request->header('Api-Token'))){
+                return Lead::create($validated);
+            }
 
-        $returnData = array(
-            'status' => 'error',
-            'message' => 'Unauthorized'
-        );
+            $returnData = array(
+                'status' => 'error',
+                'message' => 'Unauthorized'
+            );
+            return response()->json($returnData, 401);
 
-        return response()->json($returnData, 401);
     }
 
     /**
