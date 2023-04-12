@@ -18,6 +18,7 @@ use App\Http\Controllers\LeadController;
 //     return view('welcome');
 // });
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
