@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ use App\Http\Controllers\LeadController;
 //     return view('welcome');
 // });
 
+Route::any('/logout', [LogoutController::class, 'perform'])->name('dashboard.logout');
 
 Route::middleware([
     'auth:sanctum',
