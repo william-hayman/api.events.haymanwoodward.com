@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLeadRequest;
 use App\Http\Requests\UpdateLeadRequest;
+use Illuminate\Http\Request;
 use App\Models\Lead;
 
 class LeadController extends Controller
@@ -12,9 +13,32 @@ class LeadController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // $leads = Lead::all();
+
+        $eventAll = Lead::pluck('event');
+        $event = collect( $eventAll )->unique();
+
+        $leads = Lead::where([
+            ['firstName', '!=', Null],
+            [function ($query) use ($request) {
+                if (($s = $request->s)) {
+                    $query->orWhere('firstName', 'LIKE', '%' . $s . '%')
+                        ->orWhere('lastName', 'LIKE', '%' . $s . '%')
+                        ->orWhere('email', 'LIKE', '%' . $s . '%')
+                        ->get();
+                }
+            }],
+            [function ($query) use ($request) {
+                if (($e = $request->e)) {
+                    $query->orWhere('event', 'LIKE', '%' . $e . '%')
+                        ->get();
+                }
+            }]
+        ])->orderBy('created_at', 'desc')->paginate(15);
+
+        return view('list', compact('leads', 'event'));
     }
 
     /**
