@@ -46,7 +46,8 @@
                         <th class="py-3 px-6 text-center">Name</th>
                         <!-- <th class="py-3 px-6 text-center">Email</th> -->
                         <th class="py-3 px-6 text-center">Phone</th>
-                        <th class="py-3 px-6 text-center">Migrate To</th>
+                        <th class="py-3 px-6 text-center">Academic</th>
+                        <th class="py-3 px-6 text-center">T. Exp.</th>
                         <th class="py-3 px-6 text-center">Event</th>
                         <th class="py-3 px-6 text-center">Occupation</th>
                       </tr>
@@ -69,7 +70,10 @@
                         {{$lead->phone}}
                         </td>
                         <td class="py-3 px-6 text-center">
-                        {{$lead->migrateTo}}
+                        {{$lead->academicBackground}}
+                        </td>
+                        <td class="py-3 px-6 text-center">
+                        {{$lead->timeExperience}}
                         </td>
                         <td class="py-3 px-6 text-center">
                         {{$lead->event}}
