@@ -19,6 +19,10 @@ class LeadController extends Controller
 
         $eventAll = Lead::pluck('event');
         $event = collect( $eventAll )->unique();
+        $academicAll = Lead::pluck('academicBackground');
+        $academic = collect( $academicAll )->unique();
+        $xpAll = Lead::pluck('timeExperience');
+        $xp = collect( $xpAll )->unique();
 
         $leads = Lead::where([
             ['firstName', '!=', Null],
@@ -35,10 +39,22 @@ class LeadController extends Controller
                     $query->orWhere('event', 'LIKE', '%' . $e . '%')
                         ->get();
                 }
-            }]
+            }],
+            [function ($query) use ($request) {
+                if (($xp = $request->xp)) {
+                    $query->orWhere('timeExperience', 'LIKE', '%' . $xp . '%')
+                        ->get();
+                }
+            }],
+            [function ($query) use ($request) {
+                if (($a = $request->a)) {
+                    $query->orWhere('academicBackground', 'LIKE', '%' . $a . '%')
+                        ->get();
+                }
+            }],
         ])->orderBy('created_at', 'desc')->paginate(15);
 
-        return view('list', compact('leads', 'event'));
+        return view('list', compact('leads', 'event', 'academic', 'xp'));
     }
 
     /**

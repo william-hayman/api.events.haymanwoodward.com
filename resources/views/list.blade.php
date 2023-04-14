@@ -9,25 +9,49 @@
       <div class="bg-white overflow-hidden overflow-x-auto shadow-xl sm:rounded-lg">
         <div class="p-6 lg:p-8 bg-white border-b border-gray-200 ">
           
-        <form action="/leads" class=" w-full flex md:flex-nowrap flex-wrap">
-                    <input type="text" class="rounded font-thin bg-gray-50 text-black w-full md:w-1/3  my-2" name="s" value="{{ Request::get('s') }}" placeholder="Search">
+        <form action="/leads" class=" grid grid-cols-1 md:grid-cols-5 gap-4">
+            <input type="text" class="w-full rounded font-thin bg-gray-50 text-black" name="s" value="{{ Request::get('s') }}" placeholder="Search">
 
-                    <select class="rounded font-thin bg-gray-50 text-black w-full md:w-1/3  my-2" name="e" id="">
-                        <option value="">All</option>
-                        @foreach($event as $e)
-                            <option
-                                value="{{$e}}"
-                                @if ($e === Request::get('e'))
-                                    selected
-                                @endif
-                                >{{$e}}</option>
-                        @endforeach
-                    </select>
+            <select class="w-full rounded font-thin bg-gray-50 text-black" name="e" id="">
+                <option value="">Events...</option>
+                @foreach($event as $e)
+                    <option
+                        value="{{$e}}"
+                        @if ($e === Request::get('e'))
+                            selected
+                        @endif
+                        >{{$e}}</option>
+                @endforeach
+            </select>
+            
+            <select class="w-full rounded font-thin bg-gray-50 text-black" name="a" id="">
+                <option value="">Academic...</option>
+                @foreach($academic as $a)
+                    <option
+                        value="{{$a}}"
+                        @if ($a === Request::get('a'))
+                            selected
+                        @endif
+                        >{{$a}}</option>
+                @endforeach
+            </select>
 
-                    <button class="rounded font-thin bg-indigo-500 text-white w-full md:w-1/3  py-2 my-2" type="submit">
-                        Search
-                    </button>
-                </form>
+            <select class="w-full rounded font-thin bg-gray-50 text-black" name="xp" id="">
+                <option value="">XP...</option>
+                @foreach($xp as $xp)
+                    <option
+                        value="{{$xp}}"
+                        @if ($xp === Request::get('xp'))
+                            selected
+                        @endif
+                        >{{$xp}}</option>
+                @endforeach
+            </select>
+
+            <button class="w-full rounded font-thin bg-gray-50 text-black bg-indigo-500 text-white py-2" type="submit">
+                Search
+            </button>
+        </form>
 
         <div class="min-w-screen flex">
             <div class="mt-4">
@@ -42,43 +66,43 @@
                   <table class=" w-full table-auto">
                     <thead>
                       <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                        <th class="py-3 px-6 text-left">id</th>
-                        <th class="py-3 px-6 text-center">Name</th>
-                        <!-- <th class="py-3 px-6 text-center">Email</th> -->
-                        <th class="py-3 px-6 text-center">Phone</th>
-                        <th class="py-3 px-6 text-center">Academic</th>
-                        <th class="py-3 px-6 text-center">T. Exp.</th>
-                        <th class="py-3 px-6 text-center">Event</th>
-                        <th class="py-3 px-6 text-center">Occupation</th>
+                        <th class="py-1 px-3 text-center">id</th>
+                        <th class="py-1 px-3 text-center">Name</th>
+                        <!-- <th class="py-1 px-3 text-center">Email</th> -->
+                        <th class="py-1 px-3 text-center">Phone</th>
+                        <th class="py-1 px-3 text-center">Academic</th>
+                        <th class="py-1 px-3 text-center">T. Exp.</th>
+                        <th class="py-1 px-3 text-center">Event</th>
+                        <th class="py-1 px-3 text-center">Occupation</th>
                       </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
                     @foreach($leads as $lead)
         
                       <tr class="border-b border-gray-200 hover:bg-gray-100">
-                        <td class="py-3 px-6 text-left">
+                        <td class="py-1 px-3 text-center">
                           <div class="flex items-center">
                             {{$lead->id}}
                         </td>
-                        <td class="py-3 px-6 text-center">
+                        <td class="py-1 px-3 text-center">
                         {{$lead->firstName}} {{$lead->lastName}}
                         </td>
-                        <!-- <td class="py-3 px-6 text-center">
+                        <!-- <td class="py-1 px-3 text-center">
                         {{$lead->email}}
                         </td> -->
-                        <td class="py-3 px-6 text-center">
+                        <td class="py-1 px-3 text-center">
                         {{$lead->phone}}
                         </td>
-                        <td class="py-3 px-6 text-center">
+                        <td class="py-1 px-3 text-center">
                         {{$lead->academicBackground}}
                         </td>
-                        <td class="py-3 px-6 text-center">
+                        <td class="py-1 px-3 text-center">
                         {{$lead->timeExperience}}
                         </td>
-                        <td class="py-3 px-6 text-center">
+                        <td class="py-1 px-3 text-center">
                         {{$lead->event}}
                         </td>
-                        <td class="py-3 px-6 text-center">
+                        <td class="py-1 px-3 text-center">
                         {{$lead->occupation}}
                         </td>
                       </tr>
@@ -89,6 +113,8 @@
                   {{ $leads->appends([
                         's' => Request::get('s'),
                         'e' => Request::get('e'),
+                        'a' => Request::get('a'),
+                        'xp' => Request::get('xp'),
                     ])->links() }}
                 </div>
                 </div>
