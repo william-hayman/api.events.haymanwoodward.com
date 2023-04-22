@@ -5,7 +5,7 @@
     </h2>
   </x-slot>
   <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-full mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden overflow-x-auto shadow-xl sm:rounded-lg">
         <div class="p-6 lg:p-8 bg-white border-b border-gray-200 ">
           
@@ -81,10 +81,10 @@
                         <th class="py-1 px-3 text-center">id</th>
                         <th class="py-1 px-3 text-center">Name</th>
                         <!-- <th class="py-1 px-3 text-center">Email</th> -->
-                        <th class="py-1 px-3 text-center">Phone</th>
                         <th class="py-1 px-3 text-center">Academic</th>
                         <th class="py-1 px-3 text-center">T. Exp.</th>
                         <th class="py-1 px-3 text-center">Event</th>
+                        <th class="py-1 px-3 text-center">Refer</th>
                         <th class="py-1 px-3 text-center">Occupation</th>
                       </tr>
                     </thead>
@@ -97,13 +97,7 @@
                             {{$lead->id}}
                         </td>
                         <td class="py-1 px-3 text-center">
-                        {{$lead->firstName}} {{$lead->lastName}}
-                        </td>
-                        <!-- <td class="py-1 px-3 text-center">
-                        {{$lead->email}}
-                        </td> -->
-                        <td class="py-1 px-3 text-center">
-                        {{$lead->phone}}
+                        {{$lead->firstName}}
                         </td>
                         <td class="py-1 px-3 text-center">
                         {{$lead->academicBackground}}
@@ -113,6 +107,9 @@
                         </td>
                         <td class="py-1 px-3 text-center">
                         {{$lead->event}}
+                        </td>
+                        <td class="py-1 px-3 text-center">
+                        {{$lead->refer}}
                         </td>
                         <td class="py-1 px-3 text-center">
                         {{$lead->occupation}}
