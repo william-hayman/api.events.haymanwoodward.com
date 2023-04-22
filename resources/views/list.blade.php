@@ -1,7 +1,11 @@
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight flex flex-wrap justify-between ">
       {{ __('Leads') }}
+
+      @if(Auth::user()->type == 1 )
+        <a href="{{ URL::full() }}?&print=yes" class="export w-full md:w-1/5 text-start md:text-end text-sm">Export all to csv</a>
+      @endif
     </h2>
   </x-slot>
   <div class="py-12">

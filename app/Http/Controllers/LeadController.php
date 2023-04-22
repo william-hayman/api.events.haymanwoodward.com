@@ -6,10 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLeadRequest;
 use App\Http\Requests\UpdateLeadRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\Exports\LeadsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Models\Lead;
 
 class LeadController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -23,6 +29,10 @@ class LeadController extends Controller
         $xp = collect( $xpAll )->unique();
         $referAll = Lead::whereNotNull('refer')->pluck('refer');
         $refer = collect( $referAll )->unique();
+
+        if (($request->print == "yes") and Auth::user()->type == 1) {
+            return Excel::download(new LeadsExport, 'leads.xlsx');
+        }
 
         $leads = Lead::where([
             ['firstName', '!=', Null],
