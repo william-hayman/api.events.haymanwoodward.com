@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('formLink')->nullable();
             $table->string('event')->nullable();
             $table->string('imported')->nullable();
+            $table->string('utm')->nullable();
+            $table->string('refer')->nullable();
             $table->string('send_mail')->default('not_sent');
             $table->timestamps();
         });

@@ -10,7 +10,7 @@
         <div class="p-6 lg:p-8 bg-white border-b border-gray-200 ">
           
         <form action="/leads" class=" grid grid-cols-1 md:grid-cols-5 gap-4">
-            <input type="text" class="w-full rounded font-thin bg-gray-50 text-black" name="s" value="{{ Request::get('s') }}" placeholder="Search">
+            <input type="text" class="md:col-span-5 w-full rounded font-thin bg-gray-50 text-black" name="s" value="{{ Request::get('s') }}" placeholder="Search">
 
             <select class="w-full rounded font-thin bg-gray-50 text-black" name="e" id="">
                 <option value="">Events...</option>
@@ -45,6 +45,18 @@
                             selected
                         @endif
                         >{{$xp}}</option>
+                @endforeach
+            </select>
+
+            <select class="w-full rounded font-thin bg-gray-50 text-black" name="refer" id="">
+                <option value="">Refer...</option>
+                @foreach($refer as $refer)
+                    <option
+                        value="{{$refer}}"
+                        @if ($refer === Request::get('refer'))
+                            selected
+                        @endif
+                        >{{$refer}}</option>
                 @endforeach
             </select>
 
@@ -115,6 +127,7 @@
                         'e' => Request::get('e'),
                         'a' => Request::get('a'),
                         'xp' => Request::get('xp'),
+                        'refer' => Request::get('refer'),
                     ])->links() }}
                 </div>
                 </div>

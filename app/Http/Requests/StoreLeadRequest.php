@@ -37,6 +37,9 @@ class StoreLeadRequest extends FormRequest
             'event' => 'max:255',
             'imported' => 'max:255',
             'send_mail' => 'max:255',
+            'utm' => 'max:50',
+            'refer' => 'max:50',
+            'send_mail' => 'max:255',
         ];
     }
 }

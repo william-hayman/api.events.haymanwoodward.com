@@ -15,14 +15,14 @@ class LeadController extends Controller
      */
     public function index(Request $request)
     {
-        // $leads = Lead::all();
-
         $eventAll = Lead::pluck('event');
         $event = collect( $eventAll )->unique();
         $academicAll = Lead::pluck('academicBackground');
         $academic = collect( $academicAll )->unique();
         $xpAll = Lead::pluck('timeExperience');
         $xp = collect( $xpAll )->unique();
+        $referAll = Lead::whereNotNull('refer')->pluck('refer');
+        $refer = collect( $referAll )->unique();
 
         $leads = Lead::where([
             ['firstName', '!=', Null],
@@ -52,9 +52,15 @@ class LeadController extends Controller
                         ->get();
                 }
             }],
-        ])->orderBy('created_at', 'desc')->paginate(15);
+            [function ($query) use ($request) {
+                if (($refer = $request->refer)) {
+                    $query->orWhere('refer', 'LIKE', '%' . $refer . '%')
+                        ->get();
+                }
+            }],
+        ])->orderBy('created_at', 'desc')->paginate(20);
 
-        return view('list', compact('leads', 'event', 'academic', 'xp'));
+        return view('list', compact('leads', 'event', 'academic', 'xp', 'refer'));
     }
 
     /**

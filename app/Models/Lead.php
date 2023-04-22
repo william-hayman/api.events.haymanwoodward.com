@@ -24,6 +24,8 @@ class Lead extends Model
         'formLink',
         'event',
         'imported',
+        'utm',
+        'refer',
         'send_mail'
     ];
 
