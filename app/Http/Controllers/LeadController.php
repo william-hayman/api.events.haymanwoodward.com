@@ -21,11 +21,11 @@ class LeadController extends Controller
      */
     public function index(Request $request)
     {
-        $eventAll = Lead::pluck('event');
+        $eventAll = Lead::whereNotNull('event')->pluck('event');
         $event = collect( $eventAll )->unique();
-        $academicAll = Lead::pluck('academicBackground');
+        $academicAll = Lead::whereNotNull('academicBackground')->pluck('academicBackground');
         $academic = collect( $academicAll )->unique();
-        $xpAll = Lead::pluck('timeExperience');
+        $xpAll = Lead::whereNotNull('timeExperience')->pluck('timeExperience');
         $xp = collect( $xpAll )->unique();
         $referAll = Lead::whereNotNull('refer')->pluck('refer');
         $refer = collect( $referAll )->unique();
