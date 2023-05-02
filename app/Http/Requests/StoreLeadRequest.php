@@ -22,10 +22,10 @@ class StoreLeadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'firstName' => 'required|max:255',
+            'firstName' => 'max:255',
             'lastName' => 'max:255',
-            'email' => 'required|max:255',
-            'phone' => 'required|max:30',
+            'email' => 'max:255',
+            'phone' => 'max:30',
             'cellPhone' => 'max:30',
             'service' => 'max:255',
             'serviceTypes' => 'max:255',
