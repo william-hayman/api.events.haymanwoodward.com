@@ -31,7 +31,7 @@ class LeadController extends Controller
         $refer = collect( $referAll )->unique();
 
         if (($request->print == "yes") and Auth::user()->type == 1) {
-            return Excel::download(new LeadsExport, 'leads.xlsx');
+            return Excel::download(new LeadsExport, 'leads.csv', \Maatwebsite\Excel\Excel::CSV);
         }
 
         $leads = Lead::where([
