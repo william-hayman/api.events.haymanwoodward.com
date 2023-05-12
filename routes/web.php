@@ -20,6 +20,7 @@ use App\Http\Controllers\LogoutController;
 // });
 
 Route::any('/logout', [LogoutController::class, 'perform'])->name('dashboard.logout');
+Route::any('/backup', [LeadController::class, 'backup'])->name('backup');
 
 Route::middleware([
     'auth:sanctum',

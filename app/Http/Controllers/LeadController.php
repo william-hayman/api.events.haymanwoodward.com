@@ -7,6 +7,7 @@ use App\Http\Requests\StoreLeadRequest;
 use App\Http\Requests\UpdateLeadRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 use App\Exports\LeadsExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -76,9 +77,23 @@ class LeadController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function backup()
     {
-        //
+        
+        // Gera o dump do banco de dados
+        $dumpFile = storage_path('app/db_dump.sql');
+        exec('mysqldump -u ' . env('DB_USERNAME') . ' -p' . env('DB_PASSWORD') . ' ' . env('DB_DATABASE') . ' > ' . $dumpFile);
+        
+        // Envia o dump por e-mail
+        Mail::raw('Backup do banco de dados', function ($message) use ($dumpFile) {
+            $message->to('william.carriello@hw.im');
+            $message->subject('Backup do banco de dados');
+            $message->attach($dumpFile);
+        });
+        
+        // Remove o arquivo de dump
+        unlink($dumpFile);
+        
     }
 
     /**
