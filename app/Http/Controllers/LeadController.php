@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateLeadRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 use App\Exports\LeadsExport;
 use Maatwebsite\Excel\Facades\Excel;
