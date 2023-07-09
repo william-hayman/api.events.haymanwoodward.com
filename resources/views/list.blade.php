@@ -89,6 +89,7 @@
                         <th class="py-1 px-3 text-center">T. Exp.</th>
                         <th class="py-1 px-3 text-center">Event</th>
                         <th class="py-1 px-3 text-center">Refer</th>
+                        <th class="py-1 px-3 text-center">UTM</th>
                         <th class="py-1 px-3 text-center">Occupation</th>
                       </tr>
                     </thead>
@@ -114,6 +115,9 @@
                         </td>
                         <td class="py-1 px-3 text-center">
                         {{$lead->refer}}
+                        </td>
+                        <td class="py-1 px-3 text-center">
+                        {{$lead->utm}}
                         </td>
                         <td class="py-1 px-3 text-center">
                         {{$lead->occupation}}

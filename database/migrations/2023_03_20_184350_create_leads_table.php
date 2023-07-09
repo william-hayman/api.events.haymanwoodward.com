@@ -17,7 +17,11 @@ return new class extends Migration
             $table->string('lastName')->nullable();
             $table->string('email');
             $table->string('phone')->nullable();
+            $table->string('cellPhone')->nullable();
+            $table->string('visas')->nullable();
+            $table->string('country')->nullable();
             $table->string('service')->nullable();
+            $table->string('serviceTypes')->nullable();
             $table->string('migrateTo')->nullable();
             $table->string('academicBackground')->nullable();
             $table->string('timeExperience')->nullable();
