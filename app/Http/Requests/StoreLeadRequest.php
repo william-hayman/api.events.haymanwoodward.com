@@ -41,7 +41,10 @@ class StoreLeadRequest extends FormRequest
             'event' => 'max:255',
             'imported' => 'max:255',
             'send_mail' => 'max:255',
-            'utm' => 'max:50',
+            'utm' => 'max:255',
+            'source' => 'max:255',
+            'medium' => 'max:255',
+            'term' => 'max:255',
             'refer' => 'max:50',
             'send_mail' => 'max:255',
         ];

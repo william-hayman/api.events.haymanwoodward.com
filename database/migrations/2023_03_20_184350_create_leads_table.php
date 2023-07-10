@@ -32,6 +32,9 @@ return new class extends Migration
             $table->string('event')->nullable();
             $table->string('imported')->nullable();
             $table->string('utm')->nullable();
+            $table->string('source')->nullable();
+            $table->string('medium')->nullable();
+            $table->string('term')->nullable();
             $table->string('refer')->nullable();
             $table->string('send_mail')->default('not_sent');
             $table->timestamps();

@@ -29,6 +29,9 @@ class Lead extends Model
         'event',
         'imported',
         'utm',
+        'source',
+        'medium',
+        'term',
         'refer',
         'send_mail'
     ];
